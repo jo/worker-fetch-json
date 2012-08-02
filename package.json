@@ -1,0 +1,17 @@
+{
+  "name": "worker-fetch-json",
+  "description": "This hoodie worker fetches json and inserts it into a document.",
+  "author": {
+    "name": "Johannes J. Schmidt",
+    "url": "http://github.com/jo",
+    "email": "schmidt@netzmerk.com"
+  },
+  "version": "0.0.1",
+  "dependencies": {
+    "request": "*",
+    "couchdb-worker": "0.2.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
