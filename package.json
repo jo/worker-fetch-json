@@ -6,10 +6,10 @@
     "url": "http://github.com/jo",
     "email": "schmidt@netzmerk.com"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
     "request": "*",
-    "couchdb-worker": "0.2.0"
+    "couchdb-worker": "0.3.0"
   },
   "scripts": {
     "start": "node index.js"

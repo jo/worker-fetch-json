@@ -64,70 +64,14 @@ processing the same document.
 
 ## Running the Worker
 
-To start, this needs either the following environment variables set:
-
-    export HOODIE_SERVER=http://example.org
     npm start
 
 
-or pass them to the commandline:
-
-    HOODIE_SERVER=http://example.org npm start
+## Example:
 
 
-## Example Session
+    `curl -XPUT http://localhost:5984/gists/3247561 -H 'Content-Type:application/json' -d '{}'`
 
-    [jo@jolap worker-fetch-json]$ export HOODIE_SERVER=http://localhost:5984
-    [jo@jolap worker-fetch-json]$ curl -XPUT $HOODIE_SERVER/gists
-    {"ok":true}
-    [jo@jolap worker-fetch-json]$ npm start
-    > worker-fetch-json@0.0.1 start /home/jo/github/jo/worker-fetch-json
-    > node index.js
-
-    foo worker listening on http://localhost:5984/_replicator
-    foo worker listening on http://localhost:5984/_users
-    foo worker listening on http://localhost:5984/gists
-
-in another terminal:
-
-    [jo@jolap worker-fetch-json]$ export HOODIE_SERVER=http://localhost:5984
-    [jo@jolap worker-fetch-json]$ curl -XPUT $HOODIE_SERVER/gists/worker-config%2ffetch-json \
-    > -H 'Content-Type:application/json' \
-    > -d '{ "url": "https://api.github.com/gists/%s" }'
-    {"ok":true,"id":"worker-config/fetch-json","rev":"1-f8a7daaefe5332dedd528850ac58b800"}
-    [jo@jolap worker-fetch-json]$ curl -XPUT $HOODIE_SERVER/gists/2387663 -H 'Content-Type:application/json' -d '{}'
-    {"ok":true,"id":"2387663","rev":"1-967a00dff5e02add41819138abb3284d"}
-    [jo@jolap worker-fetch-json]$ 
-
-the terminal running the worker will show two new lines:
-
-    http://localhost:5984/gists start: 2387663
-    http://localhost:5984/gists finish: 2387663
-
-now the doc looks like this:
-
-    [jo@jolap worker-fetch-json]$ curl -XPUT $HOODIE_SERVER/gists/2387663
-    {
-       "_id": "2387663",
-       "_rev": "3-3ea240efcad84ebf0b989ffb1ffa3dc2",
-       "worker_status": {
-           "fetch-json": {
-               "status": "completed"
-           }
-       },
-       "html_url": "https://gist.github.com/2387663",
-       "created_at": "2012-04-14T20:03:53Z",
-       "updated_at": "2012-04-14T20:03:53Z",
-       "git_pull_url": "git://gist.github.com/2387663.git",
-       "public": true,
-       ...
-       "forks": [
-       ],
-       "url": "https://api.github.com/gists/2387663",
-       "description": "Welcome to TF",
-       "id": "2387663",
-       "comments": 0
-    }
 
 ## Testing
 
