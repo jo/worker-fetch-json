@@ -70,7 +70,11 @@ processing the same document.
 ## Example:
 
 
-    `curl -XPUT http://localhost:5984/gists/3247561 -H 'Content-Type:application/json' -d '{}'`
+    curl -XPUT http://localhost:5984/gists
+    curl -XPUT http://localhost:5984/gists/worker-config%2ffetch-json -H 'Content-Type:application/json' -d \
+         -d '{ "url": "https://api.github.com/gists/%s" }'
+    curl -XPUT http://localhost:5984/gists/3247561 -H 'Content-Type:application/json' -d '{}'
+    npm start
 
 
 ## Testing
